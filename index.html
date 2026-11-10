@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nền tảng Khảo thí & Luyện tập Trắc nghiệm Thông minh | Thầy T.M. Tường</title>
+  <meta name="description" content="Giải pháp khảo thí và luyện tập trắc nghiệm trực tuyến 0 đồng dành cho giáo viên trên nền tảng Google Drive & Google Sheets. Chống gian lận, tự động chấm điểm, giao bài tập về nhà.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- KaTeX for Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(229, 231, 235, 0.8);
+    }
+    .gradient-hero {
+      background: radial-gradient(100% 100% at 50% 0%, #eff6ff 0%, #ffffff 70%);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-brand-500 selection:text-white">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-700 to-blue-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+          <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-xl tracking-tight text-slate-900 block leading-tight">TracNghiemCore</span>
+          <span class="text-xs font-semibold text-brand-600 uppercase tracking-wider">Khảo thí 0 đồng</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="#tinh-nang" class="hover:text-brand-600 transition-colors">Tính năng</a>
+        <a href="#mo-hinh" class="hover:text-brand-600 transition-colors">Kiềng 3 chân</a>
+        <a href="#quy-trinh" class="hover:text-brand-600 transition-colors">3 Bước bắt đầu</a>
+        <a href="#trai-nghiem" class="hover:text-brand-600 transition-colors">Làm thử</a>
+        <a href="#faq" class="hover:text-brand-600 transition-colors">Hỏi đáp</a>
+        <a href="#tac-gia" class="hover:text-brand-600 transition-colors">Tác giả</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#trai-nghiem" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-100 transition-colors">
+          Thi thử ngay
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/your-template-id/copy" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 transition-all transform hover:-translate-y-0.5">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Nhận mẫu Sheet</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 gradient-hero overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- Pill Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-brand-700 text-xs sm:text-sm font-semibold mb-8 animate-pulse">
+        <span class="w-2 h-2 rounded-full bg-brand-600"></span>
+        <span>Giải pháp Chuyển đổi số Khảo thí & Luyện tập cho Giáo dục Đại học & Phổ thông</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight max-w-4xl mx-auto leading-[1.15] mb-6">
+        Nền tảng Khảo thí & Luyện tập <br class="hidden sm:block">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 via-blue-600 to-sky-500">
+          Trắc nghiệm Thông minh trên Google Drive
+        </span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+        Giải pháp <strong class="text-slate-900 font-semibold">0 đồng chi phí máy chủ</strong> dành cho Giáo viên: Tự động chấm điểm, chống gian lận đa tầng, giao bài tập về nhà và tự luyện tập cá nhân hóa — Không lo nghẽn mạng, chủ quyền dữ liệu tuyệt đối trong Google Drive của bạn.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+        <a href="#trai-nghiem" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-base shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 transition-all transform hover:-translate-y-0.5">
+          <i data-lucide="play-circle" class="w-5 h-5"></i>
+          <span>Trải nghiệm làm bài thi</span>
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/your-template-id/copy" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-semibold text-base border border-slate-300 shadow-sm transition-all hover:border-slate-400">
+          <i data-lucide="download-cloud" class="w-5 h-5"></i>
+          <span>Nhận file mẫu miễn phí</span>
+        </a>
+      </div>
+
+      <!-- Key Metrics Row -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="text-brand-600 font-extrabold text-2xl lg:text-3xl mb-1">0 VNĐ</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-medium">Chi phí duy trì trọn đời</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="text-blue-600 font-extrabold text-2xl lg:text-3xl mb-1">Không giới hạn</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-medium">Băng thông làm bài cùng lúc</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="text-emerald-600 font-extrabold text-2xl lg:text-3xl mb-1">100% Tự chủ</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-medium">Bảo mật chuẩn Nghị định 13</div>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="text-purple-600 font-extrabold text-2xl lg:text-3xl mb-1">110+ Thầy Cô</div>
+          <div class="text-xs sm:text-sm text-slate-500 font-medium">Đã tin dùng thực chiến</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MÔ HÌNH KIỀNG 3 CHÂN ================= -->
+  <section id="mo-hinh" class="py-20 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-3">Mô hình Sư phạm Đột phá</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Hoàn thiện mô hình kiềng 3 chân trong kiểm tra & đánh giá
+        </p>
+        <p class="mt-4 text-slate-600 text-base sm:text-lg">
+          Lấp đầy khoảng trống giữa việc học sinh tự học tự do và các kỳ thi căng thẳng.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Cột 1: Thực hành tự do -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-brand-300 transition-all hover:shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-blue-100 text-brand-600 flex items-center justify-center mb-6">
+              <i data-lucide="compass" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-600 bg-blue-50 px-2.5 py-1 rounded-md">Tự học & Rèn luyện</span>
+            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">Thực hành tự do</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Người học tự giác chọn chuyên đề, chọn số lượng câu hỏi, xem phản hồi đúng/sai tức thì kèm lời giải KaTeX chi tiết và phân tích bẫy sai lầm.
+            </p>
+            <ul class="space-y-2.5 text-sm text-slate-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i><span>Phân chia theo chủ đề con (Micro-learning)</span></li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i><span>Không tính điểm vào sổ học tập</span></li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i><span>Hỗ trợ nút báo lỗi câu hỏi 1 chạm</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Cột 2: Giao bài tập về nhà -->
+        <div class="bg-gradient-to-b from-blue-50/70 to-slate-50 rounded-2xl p-8 border-2 border-brand-500 shadow-md relative flex flex-col justify-between">
+          <div class="absolute -top-3.5 right-6 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+            Mới nhất
+          </div>
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center mb-6 shadow-md shadow-brand-500/20">
+              <i data-lucide="calendar-check" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-700 bg-blue-100 px-2.5 py-1 rounded-md">Đánh giá quá trình</span>
+            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">Giao bài tập có định hạn</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Giảng viên giao bài theo tuần với hạn chót (Deadline). Học sinh được phép lưu nháp làm nhiều lần, lấy điểm cao nhất vào điểm chuyên cần.
+            </p>
+            <ul class="space-y-2.5 text-sm text-slate-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i><span>Cơ chế Lưu nháp (Save Draft & Resume)</span></li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i><span>Làm lại 2-3 lần lấy điểm cao nhất</span></li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i><span>Tự mở khóa lời giải sau hạn nộp (Chống quay cóp)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Cột 3: Khảo thí chính thức -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-brand-300 transition-all hover:shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-6">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2.5 py-1 rounded-md">Đánh giá tổng kết</span>
+            <h3 class="text-xl font-bold text-slate-900 mt-3 mb-2">Phòng thi chính thức</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Thi tập trung theo ca thi nghiêm ngặt, đếm ngược thời gian thực, kích hoạt các cơ chế chống gian lận đa tầng và ghi điểm chính thức.
+            </p>
+            <ul class="space-y-2.5 text-sm text-slate-600">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600"></i><span>Giám sát thoát toàn màn hình (Fullscreen Lock)</span></li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600"></i><span>Hình mờ Watermark chống chụp ảnh phát tán</span></li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600"></i><span>Đề thi Snapshot bảo đảm tính toàn vẹn 100%</span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4 TRỤ CỘT TÍNH NĂNG ================= -->
+  <section id="tinh-nang" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-3">Tính năng toàn diện</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Mọi thứ Thầy Cô cần trong một bảng tính Google Sheet
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-lg bg-blue-100 text-brand-600 flex items-center justify-center mb-4">
+            <i data-lucide="sigma" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-lg mb-2">KaTeX Toán học Sắc nét</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Hỗ trợ hiển thị mượt mà mọi công thức tích phân, ma trận, hóa học, căn bậc trên cả điện thoại và máy tính.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+            <i data-lucide="shuffle" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-lg mb-2">Xáo đề & Đáp án Đa tầng</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Thuật toán xáo trộn ngẫu nhiên câu hỏi và các phương án nhiễu theo ma trận mức độ, ngăn chặn nhìn bài nhau.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+            <i data-lucide="cloud-off" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-lg mb-2">Tự cứu bài khi Rớt mạng</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Tự động lưu tạm câu trả lời trên trình duyệt mỗi 15 giây. Khi học sinh bị ngắt mạng, bài làm vẫn được bảo toàn nguyên vẹn.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+            <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-lg mb-2">Báo cáo & Phân tích Bẫy lỗi</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Tự động thống kê các câu hỏi có tỷ lệ làm sai cao nhất lớp để giáo viên sửa bài trọng tâm trong buổi học tiếp theo.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3 BƯỚC BẮT ĐẦU ================= -->
+  <section id="quy-trinh" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-3">Triển khai thần tốc</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          Chỉ mất 3 phút để sở hữu hệ thống khảo thí riêng
+        </p>
+        <p class="mt-4 text-slate-600 text-base">Hoàn toàn không cần biết lập trình hay cấu hình máy chủ phức tạp.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 relative">
+        
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-200 text-brand-600 flex items-center justify-center text-2xl font-extrabold mx-auto mb-6 shadow-sm">
+            1
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">Sao chép mẫu Google Sheet</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Bấm nút nhận bản sao để nhân bản tệp trang tính môn học chuẩn mực vào Google Drive cá nhân của Thầy Cô.
+          </p>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-200 text-brand-600 flex items-center justify-center text-2xl font-extrabold mx-auto mb-6 shadow-sm">
+            2
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">Bấm Khởi tạo (Bootstrap)</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Mở Sheet $\rightarrow$ Nhấn menu <strong>"Khảo thí Trắc nghiệm"</strong> $\rightarrow$ Chọn <strong>"Khởi tạo hệ thống"</strong> để tự động tạo toàn bộ thư mục và cổng thi.
+          </p>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 border-2 border-brand-200 text-brand-600 flex items-center justify-center text-2xl font-extrabold mx-auto mb-6 shadow-sm">
+            3
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 mb-2">Gửi link cho học sinh</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Sao chép đường link WebClient được cấp và gửi vào nhóm Zalo hoặc Google Classroom để học sinh bắt đầu làm bài.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEMO LÀM THỬ TƯƠNG TÁC ================= -->
+  <section id="trai-nghiem" class="py-20 bg-slate-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-400 bg-brand-900/60 border border-brand-500/30 px-3 py-1 rounded-full">Trải nghiệm tương tác thực tế</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold mt-4 tracking-tight">Thử làm một câu trắc nghiệm ngay tại đây</h2>
+        <p class="mt-3 text-slate-400 text-sm sm:text-base">Mô phỏng trải nghiệm thực tế với công thức toán KaTeX và giải thích sư phạm chi tiết.</p>
+      </div>
+
+      <!-- Quiz Card -->
+      <div class="bg-slate-800/90 rounded-2xl border border-slate-700 p-6 sm:p-8 shadow-2xl backdrop-blur">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-700/80 mb-6 text-sm">
+          <span class="text-brand-400 font-semibold flex items-center gap-2">
+            <i data-lucide="help-circle" class="w-4 h-4"></i>
+            <span>Câu 1 (Mức độ Thông hiểu)</span>
+          </span>
+          <span class="text-xs bg-slate-700 text-slate-300 px-2.5 py-1 rounded-md font-mono">TKT_C01_012</span>
+        </div>
+
+        <div class="text-base sm:text-lg font-medium text-slate-100 leading-relaxed mb-6">
+          Cho ma trận \( A = \begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix} \). Định thức của ma trận \( A \) (ký hiệu là \( \det(A) \) hoặc \( |A| \)) có giá trị bằng bao nhiêu?
+        </div>
+
+        <!-- Options -->
+        <div class="space-y-3" id="demo-options">
+          <button onclick="checkAnswer(0)" class="demo-btn w-full text-left p-4 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700/80 hover:border-slate-600 transition-all flex items-center justify-between">
+            <span>A. \( \det(A) = 11 \)</span>
+            <i data-lucide="circle" class="w-5 h-5 text-slate-500"></i>
+          </button>
+          <button onclick="checkAnswer(1)" class="demo-btn w-full text-left p-4 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700/80 hover:border-slate-600 transition-all flex items-center justify-between">
+            <span>B. \( \det(A) = 5 \)</span>
+            <i data-lucide="circle" class="w-5 h-5 text-slate-500"></i>
+          </button>
+          <button onclick="checkAnswer(2)" class="demo-btn w-full text-left p-4 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700/80 hover:border-slate-600 transition-all flex items-center justify-between">
+            <span>C. \( \det(A) = -5 \)</span>
+            <i data-lucide="circle" class="w-5 h-5 text-slate-500"></i>
+          </button>
+          <button onclick="checkAnswer(3)" class="demo-btn w-full text-left p-4 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700/80 hover:border-slate-600 transition-all flex items-center justify-between">
+            <span>D. \( \det(A) = 10 \)</span>
+            <i data-lucide="circle" class="w-5 h-5 text-slate-500"></i>
+          </button>
+        </div>
+
+        <!-- Explanation (Initially Hidden) -->
+        <div id="demo-explanation" class="hidden mt-6 p-5 rounded-xl bg-slate-900/90 border border-emerald-500/40 text-sm leading-relaxed text-slate-200">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold mb-2">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+            <span>Chính xác! Đáp án đúng là B (\( \det(A) = 5 \))</span>
+          </div>
+          <div class="text-slate-300">
+            <strong>Lời giải chi tiết:</strong><br>
+            Áp dụng công thức tính định thức ma trận vuông cấp 2:
+            \[
+            \det(A) = a_{11}a_{22} - a_{12}a_{21} = (2 \times 4) - (1 \times 3) = 8 - 3 = 5.
+            \]
+            <em>Bẫy sai lầm:</em> Sinh viên thường nhầm dấu thành cộng hai tích chéo dẫn đến kết quả nhầm sang đáp án A (\(8 + 3 = 11\)).
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ACCORDION ================= -->
+  <section id="faq" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-3">Giải đáp thắc mắc</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Câu hỏi thường gặp của Thầy Cô</p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base sm:text-lg">
+            <span>1. Nền tảng này có thực sự miễn phí hoàn toàn không?</span>
+            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+          </summary>
+          <p class="mt-4 text-slate-600 text-sm leading-relaxed">
+            Dạ hoàn toàn miễn phí trọn đời. Hệ thống vận hành dựa trên tài nguyên miễn phí sẵn có của Google Drive và Google Apps Script trong tài khoản Google của Thầy Cô. Thầy Cô không phải trả bất kỳ chi phí duy trì máy chủ hay phần mềm nào.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base sm:text-lg">
+            <span>2. Hàng trăm học sinh cùng nộp bài một lúc có bị sập mạng không?</span>
+            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+          </summary>
+          <p class="mt-4 text-slate-600 text-sm leading-relaxed">
+            Không lo nghẽn mạng! Hệ thống áp dụng mô hình điện toán phân tán: Lớp học của Thầy Cô nào thì máy chủ cá nhân của Thầy Cô đó xử lý. Bài nộp được gửi thẳng vào bảng tính cá nhân mà không bị dồn ứ tại một máy chủ trung tâm nào.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base sm:text-lg">
+            <span>3. Học sinh có thể bấm F12 (Inspect) để soi đáp án đúng không?</span>
+            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+          </summary>
+          <p class="mt-4 text-slate-600 text-sm leading-relaxed">
+            Tuyệt đối không! Trong chế độ Thi chính thức, toàn bộ đáp án đúng và lời giải được bảo mật $100\%$ trên máy chủ Google. Ứng dụng phía học sinh chỉ nhận duy nhất nội dung câu hỏi và các phương án nhiễu; máy học sinh hoàn toàn không có thông tin đáp án đúng cho đến khi nộp bài.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base sm:text-lg">
+            <span>4. Tôi không rành về tin học và lập trình thì có dùng được không?</span>
+            <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+          </summary>
+          <p class="mt-4 text-slate-600 text-sm leading-relaxed">
+            Rất dễ dàng! Mọi thao tác quản lý danh sách lớp, chọn đề, xem điểm thi đều diễn ra ngay trên bảng tính Google Sheet tương tự như việc Thầy Cô sử dụng Excel hàng ngày. Chỉ cần bấm 1 click là hệ thống tự khởi tạo toàn bộ.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THÔNG TIN TÁC GIẢ ================= -->
+  <section id="tac-gia" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-tr from-brand-700 to-blue-500 text-white flex items-center justify-center font-extrabold text-4xl shadow-xl shadow-brand-500/25 shrink-0">
+          TMT
+        </div>
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-600 bg-blue-50 px-3 py-1 rounded-full">Người phát triển</span>
+          <h3 class="text-2xl font-bold text-slate-900 mt-2 mb-1">Thầy T.M. Tường</h3>
+          <p class="text-slate-600 text-sm mb-4">Trường Đại học Tài chính - Marketing (UFM)</p>
+          <p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Dự án được xây dựng với tâm huyết mang công nghệ khảo thí hiện đại, công bằng và hoàn toàn miễn phí đến với mạng lưới Thầy Cô giáo và người học trên toàn quốc.
+          </p>
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+            <a href="mailto:tmtuong@gmail.com" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-brand-600">
+              <i data-lucide="mail" class="w-4 h-4 text-brand-600"></i>
+              <span>tmtuong@gmail.com</span>
+            </a>
+            <span class="text-slate-300">•</span>
+            <span class="inline-flex items-center gap-2 text-sm font-semibold text-slate-700">
+              <i data-lucide="map-pin" class="w-4 h-4 text-brand-600"></i>
+              <span>TP. Hồ Chí Minh</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:flex sm:justify-between sm:items-center">
+      <div class="flex items-center justify-center sm:justify-start gap-2 mb-4 sm:mb-0">
+        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+          <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+        </div>
+        <span class="font-bold text-slate-200">TracNghiemCore</span>
+        <span class="text-xs text-slate-500">© 2026 T.M.Tường. Bản quyền thuộc về tác giả.</span>
+      </div>
+      <div class="text-xs text-slate-500">
+        Vận hành phi lợi nhuận vì sự nghiệp phát triển Chuyển đổi số Giáo dục Việt Nam.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Demo Script -->
+  <script>
+    lucide.createIcons();
+
+    function checkAnswer(selectedIdx) {
+      const buttons = document.querySelectorAll('.demo-btn');
+      const explanation = document.getElementById('demo-explanation');
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === 1) { // Correct answer is B
+          btn.classList.remove('bg-slate-800', 'border-slate-700');
+          btn.classList.add('bg-emerald-900/60', 'border-emerald-500', 'text-emerald-200');
+          btn.querySelector('i').setAttribute('data-lucide', 'check-circle-2');
+          btn.querySelector('i').classList.add('text-emerald-400');
+        } else if (idx === selectedIdx && selectedIdx !== 1) { // Wrong answer selected
+          btn.classList.remove('bg-slate-800', 'border-slate-700');
+          btn.classList.add('bg-rose-900/60', 'border-rose-500', 'text-rose-200');
+          btn.querySelector('i').setAttribute('data-lucide', 'x-circle');
+          btn.querySelector('i').classList.add('text-rose-400');
+        }
+      });
+
+      explanation.classList.remove('hidden');
+      lucide.createIcons();
+      renderMathInElement(explanation);
+    }
+  </script>
+</body>
+</html>
